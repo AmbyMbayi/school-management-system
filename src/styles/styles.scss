@@ -1,0 +1,8 @@
+//variables
+@import "variables";
+@import "mixins";
+@import "globals";
+
+//imports from scss
+@import "../components/App/styles.scss";
+@import "../components/Navbar/styles.scss";
