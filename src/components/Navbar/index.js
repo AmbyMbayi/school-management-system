@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "../../styles/styles.scss";
+
 import Logo from "../../assets/logo.png";
 import Profile from "../Profile";
 import Notification from "../Notification";
 import Avatar from "../../assets/profile.jpg";
+
+import "../../styles/styles.scss";
 
 export default function Navbar(props) {
   const [showNotification, setShowNotification] = useState(false);
