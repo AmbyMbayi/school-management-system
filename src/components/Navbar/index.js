@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/styles.scss";
 import Logo from "../../assets/logo.png";
-import Profile from "../../assets/profile.jpg";
+import Profile from "../Profile";
+import Notification from "../Notification";
+import Avatar from "../../assets/profile.jpg";
 
-export default function Navbar() {
+export default function Navbar(props) {
+  const [showNotification, setShowNotification] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
+
+  function toggleNotification() {
+    setShowNotification((showNotification) => !showNotification);
+  }
+  function toggleProfile() {
+    setShowProfile((showProfile) => !showProfile);
+  }
+
   return (
     <div>
       <div className="navbar">
@@ -28,56 +40,16 @@ export default function Navbar() {
         </form>
         <ul className="navbar-nav nav-right">
           <li className="nav-item dropdown">
-            <a className="nav-link">
+            <a className="nav-link" onClick={toggleNotification}>
               <i className="fa fa-bell"></i>
               <span className="navbar-badge">15</span>
             </a>
-            <ul className="dropdown-menu notification-menu">
-              <div className="dropdown-menu-header">
-                <span>Notification</span>
-              </div>
-              <div className="dropdown-menu-content">
-                <li className="dropdown-menu-item">
-                  <a href="" className="dropdown-menu-link">
-                    <div>
-                      <i className="fa fa-gift"></i>
-                    </div>
-                    <span>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Voluptate aut facere expedita atque ex laudantium alias
-                      nesciunt, similique ab ea molestiae ratione id consectetur
-                      cumque facilis nemo. Natus, quibusdam vel. <br />
-                      <span>15/07/2020</span>
-                    </span>
-                  </a>
-                </li>
-              </div>
-              <div className="dropdown-menu-footer">
-                <span>View all notification</span>
-              </div>
-            </ul>
+            {showNotification && <Notification />}
           </li>
           <li className="nav-item avt-wrapper">
             <div className="avt dropdown">
-              <img src={Profile} alt="" />
-              <ul className="dropdown-menu">
-                <li className="dropdown-menu-item">
-                  <a className="dropdown-menu-link">
-                    <div>
-                      <i class="fa fa-user-circle-o"></i>
-                    </div>
-                    <span>Profile</span>
-                  </a>
-                </li>
-                <li className="dropdown-menu-item">
-                  <a className="dropdown-menu-link">
-                    <div>
-                      <i class="fa fa-sign-out"></i>
-                    </div>
-                    <span>logout</span>
-                  </a>
-                </li>
-              </ul>
+              <img src={Avatar} alt="" onClick={toggleProfile} />
+              {showProfile && <Profile />}
             </div>
           </li>
         </ul>
